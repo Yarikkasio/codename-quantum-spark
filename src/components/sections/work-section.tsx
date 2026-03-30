@@ -15,31 +15,31 @@ export function WorkSection() {
           }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
-            Проекты
+            Применение
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Избранные работы</p>
+          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Где ИИ меняет мир</p>
         </div>
 
         <div className="space-y-6 md:space-y-8">
           {[
             {
               number: "01",
-              title: "ТехноСтарт",
-              category: "Корпоративный портал",
+              title: "Медицина",
+              category: "Диагностика, анализ снимков, поиск лекарств",
               year: "2024",
               direction: "left",
             },
             {
               number: "02",
-              title: "АльфаТрейд",
-              category: "Финтех платформа",
+              title: "Образование",
+              category: "Персонализированное обучение и умные репетиторы",
               year: "2024",
               direction: "right",
             },
             {
               number: "03",
-              title: "МедиаПульс",
-              category: "Медиа сервис",
+              title: "Творчество",
+              category: "Генерация изображений, музыки и текстов",
               year: "2023",
               direction: "left",
             },

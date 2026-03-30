@@ -19,11 +19,11 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
               }`}
             >
               <h2 className="mb-3 font-sans text-3xl font-light leading-[1.1] tracking-tight text-foreground md:mb-4 md:text-6xl lg:text-7xl">
-                Создаем
+                ИИ уже
                 <br />
-                будущее
+                здесь
                 <br />
-                <span className="text-foreground/40">цифровых</span>
+                <span className="text-foreground/40">с нами</span>
               </h2>
             </div>
 
@@ -34,10 +34,10 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
               style={{ transitionDelay: "200ms" }}
             >
               <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">
-                Мы команда дизайнеров, разработчиков и технологов, которые создают исключительные цифровые продукты.
+                Искусственный интеллект — это не далёкое будущее. Каждый день миллиарды людей используют его, даже не замечая этого.
               </p>
               <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">
-                Каждый проект — это возможность исследовать новые решения и раздвигать границы возможного.
+                Понять, как работает ИИ и как он влияет на общество — значит понять, в каком мире мы будем жить завтра.
               </p>
             </div>
           </div>
@@ -45,9 +45,9 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
           {/* Right side - Stats with creative layout */}
           <div className="flex flex-col justify-center space-y-6 md:space-y-12">
             {[
-              { value: "150+", label: "Проектов", sublabel: "Реализовано по всему миру", direction: "right" },
-              { value: "8", label: "Лет", sublabel: "Опыта и инноваций", direction: "left" },
-              { value: "12", label: "Наград", sublabel: "Отраслевое признание", direction: "right" },
+              { value: "300M+", label: "Пользователей", sublabel: "ChatGPT за первый год", direction: "right" },
+              { value: "40%", label: "Рабочих мест", sublabel: "Затронет автоматизация к 2030", direction: "left" },
+              { value: "2011", label: "Год", sublabel: "Когда ИИ впервые победил в Jeopardy!", direction: "right" },
             ].map((stat, i) => {
               const getRevealClass = () => {
                 if (!isVisible) {
@@ -84,10 +84,10 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
           style={{ transitionDelay: "750ms" }}
         >
           <MagneticButton size="lg" variant="primary" onClick={() => scrollToSection?.(4)}>
-            Начать проект
+            Связаться
           </MagneticButton>
           <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection?.(1)}>
-            Смотреть работы
+            Примеры применения
           </MagneticButton>
         </div>
       </div>
