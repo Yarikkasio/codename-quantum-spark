@@ -152,16 +152,16 @@ export default function Index() {
 
 
       <nav
-        className="fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-6 py-6 md:px-12"
+        className="fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-4 py-4 md:px-12 md:py-6"
       >
         <button
           onClick={() => scrollToSection(0)}
           className="flex items-center gap-2 transition-transform hover:scale-105"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground/15 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-foreground/25">
-            <span className="font-sans text-xl font-bold text-foreground">AI</span>
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-foreground/15 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-foreground/25 md:h-10 md:w-10">
+            <span className="font-sans text-base font-bold text-foreground md:text-xl">AI</span>
           </div>
-          <span className="font-sans text-xl font-semibold tracking-tight text-foreground">ИИ & Общество</span>
+          <span className="font-sans text-base font-semibold tracking-tight text-foreground md:text-xl">ИИ & Общество</span>
         </button>
 
         <div className="hidden items-center gap-8 md:flex">
@@ -183,9 +183,23 @@ export default function Index() {
           ))}
         </div>
 
-        <MagneticButton variant="secondary" onClick={() => scrollToSection(4)}>
-          Контакты
-        </MagneticButton>
+        <div className="hidden md:block">
+          <MagneticButton variant="secondary" onClick={() => scrollToSection(4)}>
+            Контакты
+          </MagneticButton>
+        </div>
+
+        <div className="flex items-center gap-1 md:hidden">
+          {[0, 1, 2, 3, 4].map((i) => (
+            <button
+              key={i}
+              onClick={() => scrollToSection(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                currentSection === i ? "w-5 bg-foreground" : "w-1.5 bg-foreground/30"
+              }`}
+            />
+          ))}
+        </div>
       </nav>
 
       <div
@@ -195,22 +209,22 @@ export default function Index() {
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {/* Hero Section */}
-        <section className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-6 pb-16 pt-24 md:px-12 md:pb-24">
+        <section className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-4 pb-14 pt-20 md:px-12 md:pb-24 md:pt-24">
           <div className="max-w-3xl">
-            <div className="mb-4 inline-block animate-in fade-in slide-in-from-bottom-4 rounded-full border border-foreground/20 bg-foreground/15 px-4 py-1.5 backdrop-blur-md duration-700">
+            <div className="mb-3 inline-block animate-in fade-in slide-in-from-bottom-4 rounded-full border border-foreground/20 bg-foreground/15 px-3 py-1 backdrop-blur-md duration-700 md:mb-4 md:px-4 md:py-1.5">
               <p className="font-mono text-xs text-foreground/90">Школьный проект · 2026</p>
             </div>
-            <h1 className="mb-6 animate-in fade-in slide-in-from-bottom-8 font-sans text-6xl font-light leading-[1.1] tracking-tight text-foreground duration-1000 md:text-7xl lg:text-8xl">
+            <h1 className="mb-4 animate-in fade-in slide-in-from-bottom-8 font-sans text-4xl font-light leading-[1.1] tracking-tight text-foreground duration-1000 sm:text-5xl md:mb-6 md:text-7xl lg:text-8xl">
               <span className="text-balance">
                 Искусственный интеллект
               </span>
             </h1>
-            <p className="mb-8 max-w-xl animate-in fade-in slide-in-from-bottom-4 text-lg leading-relaxed text-foreground/90 duration-1000 delay-200 md:text-xl">
+            <p className="mb-6 max-w-xl animate-in fade-in slide-in-from-bottom-4 text-base leading-relaxed text-foreground/90 duration-1000 delay-200 md:mb-8 md:text-xl">
               <span className="text-pretty">
                 Развитие и влияние искусственного интеллекта на современное общество — как технологии меняют нашу жизнь уже сегодня.
               </span>
             </p>
-            <div className="flex animate-in fade-in slide-in-from-bottom-4 flex-col gap-4 duration-1000 delay-300 sm:flex-row sm:items-center">
+            <div className="flex animate-in fade-in slide-in-from-bottom-4 flex-col gap-3 duration-1000 delay-300 sm:flex-row sm:items-center sm:gap-4">
               <MagneticButton
                 size="lg"
                 variant="primary"
@@ -224,7 +238,7 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-in fade-in duration-1000 delay-500">
+          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 animate-in fade-in duration-1000 delay-500 md:bottom-8">
             <div className="flex items-center gap-2">
               <p className="font-mono text-xs text-foreground/80">Листайте вправо</p>
               <div className="flex h-6 w-12 items-center justify-center rounded-full border border-foreground/20 bg-foreground/15 backdrop-blur-md">

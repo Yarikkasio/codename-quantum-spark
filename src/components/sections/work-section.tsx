@@ -42,7 +42,7 @@ export function WorkSection() {
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-6 pt-20 md:px-12 md:pt-0 lg:px-16"
+      className="flex h-screen w-screen shrink-0 snap-start items-center overflow-y-auto px-4 pt-16 md:overflow-y-hidden md:px-12 md:pt-0 lg:px-16"
     >
       <div className="mx-auto w-full max-w-7xl">
         <div
@@ -50,7 +50,7 @@ export function WorkSection() {
             isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
           }`}
         >
-          <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
+          <h2 className="mb-2 font-sans text-3xl font-light tracking-tight text-foreground sm:text-4xl md:text-6xl lg:text-7xl">
             Применение
           </h2>
           <p className="font-mono text-sm text-foreground/60 md:text-base">/ Где ИИ меняет мир</p>
@@ -92,11 +92,9 @@ function ProjectCard({
 
   return (
     <div
-      className={`group border-b border-foreground/10 py-5 transition-all duration-700 hover:border-foreground/20 md:py-6 ${getRevealClass()}`}
+      className={`group border-b border-foreground/10 py-4 transition-all duration-700 hover:border-foreground/20 md:py-6 ${getRevealClass()}`}
       style={{
         transitionDelay: `${index * 150}ms`,
-        marginLeft: index % 2 === 0 ? "0" : "auto",
-        maxWidth: index % 2 === 0 ? "85%" : "90%",
       }}
     >
       <div className="flex items-center justify-between gap-4">
@@ -107,24 +105,24 @@ function ProjectCard({
           <img
             src={project.image}
             alt={project.title}
-            className="h-14 w-20 rounded-lg object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100 md:h-16 md:w-24"
+            className="h-12 w-16 shrink-0 rounded-lg object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100 md:h-16 md:w-24"
           />
-          <div>
-            <h3 className="mb-1 font-sans text-2xl font-light text-foreground transition-transform duration-300 group-hover:translate-x-2 md:text-3xl lg:text-4xl">
+          <div className="min-w-0 flex-1">
+            <h3 className="mb-0.5 font-sans text-xl font-light text-foreground transition-transform duration-300 group-hover:translate-x-2 md:text-3xl lg:text-4xl">
               {project.title}
             </h3>
-            <p className="font-mono text-xs text-foreground/50 md:text-sm">{project.category}</p>
+            <p className="hidden font-mono text-xs text-foreground/50 sm:block md:text-sm">{project.category}</p>
           </div>
         </div>
         <button
           onClick={onNavigate}
-          className="flex shrink-0 items-center gap-2 rounded-full border border-foreground/20 px-4 py-2 text-xs font-medium text-foreground/60 transition-all duration-200 hover:border-foreground/50 hover:bg-foreground hover:text-background"
+          className="flex shrink-0 items-center gap-1.5 rounded-full border border-foreground/20 px-3 py-1.5 text-xs font-medium text-foreground/60 transition-all duration-200 hover:border-foreground/50 hover:bg-foreground hover:text-background md:gap-2 md:px-4 md:py-2"
         >
-          Подробнее
+          <span className="hidden sm:inline">Подробнее</span>
           <Icon name="ArrowRight" size={12} />
         </button>
       </div>
-      <div className="mt-3 ml-12 flex flex-wrap gap-2 md:ml-16">
+      <div className="mt-2 ml-10 flex flex-wrap gap-1.5 md:ml-16 md:mt-3 md:gap-2">
         {project.tags.map((tag) => (
           <span
             key={tag}

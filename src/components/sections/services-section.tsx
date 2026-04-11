@@ -44,7 +44,7 @@ export function ServicesSection() {
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-6 pt-20 md:px-12 md:pt-0 lg:px-16"
+      className="flex h-screen w-screen shrink-0 snap-start items-start overflow-y-auto px-4 pt-16 md:items-center md:overflow-y-hidden md:px-12 md:pt-0 lg:px-16"
     >
       <div className="mx-auto w-full max-w-7xl">
         <div
@@ -52,13 +52,13 @@ export function ServicesSection() {
             isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
           }`}
         >
-          <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
+          <h2 className="mb-2 font-sans text-3xl font-light tracking-tight text-foreground sm:text-4xl md:text-6xl lg:text-7xl">
             Влияние
           </h2>
           <p className="font-mono text-sm text-foreground/60 md:text-base">/ Ключевые аспекты</p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 md:gap-x-14 md:gap-y-8 lg:gap-x-20">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-2 md:gap-x-14 md:gap-y-8 lg:gap-x-20">
           {services.map((service, i) => (
             <ServiceCard
               key={i}
@@ -115,22 +115,22 @@ function ServiceCard({
       <img
         src={service.image}
         alt={service.title}
-        className="mb-4 h-36 w-full rounded-xl object-cover opacity-75 transition-opacity duration-300 group-hover:opacity-100"
+        className="mb-2 h-20 w-full rounded-lg object-cover opacity-75 transition-opacity duration-300 group-hover:opacity-100 sm:h-28 md:mb-4 md:h-36 md:rounded-xl"
       />
-      <h3 className="mb-2 font-sans text-2xl font-light text-foreground md:text-3xl">{service.title}</h3>
-      <p className="mb-4 max-w-sm text-sm leading-relaxed text-foreground/80 md:text-base">{service.description}</p>
-      <div className="flex flex-wrap items-center gap-2">
+      <h3 className="mb-1 font-sans text-base font-light text-foreground sm:text-xl md:mb-2 md:text-3xl">{service.title}</h3>
+      <p className="mb-2 text-xs leading-relaxed text-foreground/80 md:mb-4 md:max-w-sm md:text-base">{service.description}</p>
+      <div className="flex flex-wrap items-center gap-1 md:gap-2">
         {service.tags.map((tag) => (
           <span
             key={tag}
-            className="rounded-full border border-foreground/10 px-3 py-1 font-mono text-xs text-foreground/40"
+            className="hidden rounded-full border border-foreground/10 px-2 py-0.5 font-mono text-xs text-foreground/40 sm:inline-block md:px-3 md:py-1"
           >
             {tag}
           </span>
         ))}
         <button
           onClick={onNavigate}
-          className="ml-auto flex items-center gap-1.5 rounded-full border border-foreground/20 px-3 py-1 font-mono text-xs text-foreground/50 transition-all duration-200 hover:border-foreground/50 hover:bg-foreground hover:text-background"
+          className="flex items-center gap-1 rounded-full border border-foreground/20 px-2 py-1 font-mono text-xs text-foreground/50 transition-all duration-200 hover:border-foreground/50 hover:bg-foreground hover:text-background md:ml-auto md:gap-1.5 md:px-3"
         >
           Подробнее
           <Icon name="ArrowRight" size={11} />
