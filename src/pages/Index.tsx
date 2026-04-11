@@ -138,6 +138,15 @@ export default function Index() {
 
   return (
     <main className="relative h-screen w-full overflow-hidden bg-background">
+      {/* Blobs */}
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-teal-200/40 blur-3xl" />
+        <div className="absolute left-1/3 top-1/4 h-80 w-80 rounded-full bg-cyan-200/35 blur-3xl" />
+        <div className="absolute right-0 top-10 h-72 w-72 rounded-full bg-teal-300/30 blur-3xl" />
+        <div className="absolute bottom-10 left-1/4 h-96 w-64 rounded-full bg-cyan-300/30 blur-3xl" />
+        <div className="absolute -bottom-20 right-1/4 h-80 w-80 rounded-full bg-teal-200/35 blur-3xl" />
+        <div className="absolute bottom-1/3 right-10 h-60 w-96 rounded-full bg-cyan-200/25 blur-3xl" />
+      </div>
       <GrainOverlay />
 
 
