@@ -11,6 +11,7 @@ const projects = [
     direction: "left",
     href: "/apply/medicine",
     tags: ["Анализ снимков", "Поиск лекарств", "Диагностика", "Хирургия"],
+    image: "https://cdn.poehali.dev/projects/12e9f643-468f-44a7-812b-b7d8d61b34ab/files/6219c70e-ea2f-4802-a72e-6772365e3b9b.jpg",
   },
   {
     number: "02",
@@ -20,6 +21,7 @@ const projects = [
     direction: "right",
     href: "/apply/education",
     tags: ["Персонализация", "ИИ-репетиторы", "Проверка работ", "Доступность"],
+    image: "https://cdn.poehali.dev/projects/12e9f643-468f-44a7-812b-b7d8d61b34ab/files/cd5b772f-7872-4771-b43f-5ce1b2d4d6b3.jpg",
   },
   {
     number: "03",
@@ -29,6 +31,7 @@ const projects = [
     direction: "left",
     href: "/apply/creative",
     tags: ["Изображения", "Музыка", "Тексты", "Видео"],
+    image: "https://cdn.poehali.dev/projects/12e9f643-468f-44a7-812b-b7d8d61b34ab/files/2c4e479e-f2ef-4a4a-bccb-8b86ae0dcfb7.jpg",
   },
 ]
 
@@ -75,7 +78,7 @@ function ProjectCard({
   isVisible,
   onNavigate,
 }: {
-  project: { number: string; title: string; category: string; year: string; direction: string; tags: string[] }
+  project: { number: string; title: string; category: string; year: string; direction: string; tags: string[]; image: string }
   index: number
   isVisible: boolean
   onNavigate: () => void
@@ -97,10 +100,15 @@ function ProjectCard({
       }}
     >
       <div className="flex items-center justify-between gap-4">
-        <div className="flex items-baseline gap-4 md:gap-8">
+        <div className="flex items-center gap-4 md:gap-8">
           <span className="font-mono text-sm text-foreground/30 transition-colors group-hover:text-foreground/50 md:text-base">
             {project.number}
           </span>
+          <img
+            src={project.image}
+            alt={project.title}
+            className="h-14 w-20 rounded-lg object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100 md:h-16 md:w-24"
+          />
           <div>
             <h3 className="mb-1 font-sans text-2xl font-light text-foreground transition-transform duration-300 group-hover:translate-x-2 md:text-3xl lg:text-4xl">
               {project.title}
