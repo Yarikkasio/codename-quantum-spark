@@ -239,9 +239,6 @@ export default function Index() {
         {/* Hero Section */}
         <section className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-4 pb-14 pt-20 md:px-12 md:pb-24 md:pt-24">
           <div className="max-w-3xl">
-            <div className="mb-3 inline-block animate-in fade-in slide-in-from-bottom-4 rounded-full border border-foreground/20 bg-foreground/15 px-3 py-1 backdrop-blur-md duration-700 md:mb-4 md:px-4 md:py-1.5">
-              <p className="font-mono text-xs text-foreground/90">Школьный проект · 2026</p>
-            </div>
             <h1 className="mb-4 animate-in fade-in slide-in-from-bottom-8 font-sans text-4xl font-light leading-[1.1] tracking-tight text-foreground duration-1000 sm:text-5xl md:mb-6 md:text-7xl lg:text-8xl">
               <span className="text-balance">
                 Искусственный интеллект
