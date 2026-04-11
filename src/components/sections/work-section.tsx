@@ -1,7 +1,40 @@
+import { useNavigate } from "react-router-dom"
 import { useReveal } from "@/hooks/use-reveal"
+import Icon from "@/components/ui/icon"
+
+const projects = [
+  {
+    number: "01",
+    title: "Медицина",
+    category: "Диагностика, анализ снимков, поиск лекарств",
+    year: "2024",
+    direction: "left",
+    href: "/apply/medicine",
+    tags: ["Анализ снимков", "Поиск лекарств", "Диагностика", "Хирургия"],
+  },
+  {
+    number: "02",
+    title: "Образование",
+    category: "Персонализированное обучение и умные репетиторы",
+    year: "2024",
+    direction: "right",
+    href: "/apply/education",
+    tags: ["Персонализация", "ИИ-репетиторы", "Проверка работ", "Доступность"],
+  },
+  {
+    number: "03",
+    title: "Творчество",
+    category: "Генерация изображений, музыки и текстов",
+    year: "2023",
+    direction: "left",
+    href: "/apply/creative",
+    tags: ["Изображения", "Музыка", "Тексты", "Видео"],
+  },
+]
 
 export function WorkSection() {
   const { ref, isVisible } = useReveal(0.3)
+  const navigate = useNavigate()
 
   return (
     <section
@@ -21,30 +54,14 @@ export function WorkSection() {
         </div>
 
         <div className="space-y-6 md:space-y-8">
-          {[
-            {
-              number: "01",
-              title: "Медицина",
-              category: "Диагностика, анализ снимков, поиск лекарств",
-              year: "2024",
-              direction: "left",
-            },
-            {
-              number: "02",
-              title: "Образование",
-              category: "Персонализированное обучение и умные репетиторы",
-              year: "2024",
-              direction: "right",
-            },
-            {
-              number: "03",
-              title: "Творчество",
-              category: "Генерация изображений, музыки и текстов",
-              year: "2023",
-              direction: "left",
-            },
-          ].map((project, i) => (
-            <ProjectCard key={i} project={project} index={i} isVisible={isVisible} />
+          {projects.map((project, i) => (
+            <ProjectCard
+              key={i}
+              project={project}
+              index={i}
+              isVisible={isVisible}
+              onNavigate={() => navigate(project.href)}
+            />
           ))}
         </div>
       </div>
@@ -56,10 +73,12 @@ function ProjectCard({
   project,
   index,
   isVisible,
+  onNavigate,
 }: {
-  project: { number: string; title: string; category: string; year: string; direction: string }
+  project: { number: string; title: string; category: string; year: string; direction: string; tags: string[] }
   index: number
   isVisible: boolean
+  onNavigate: () => void
 }) {
   const getRevealClass = () => {
     if (!isVisible) {
@@ -70,25 +89,44 @@ function ProjectCard({
 
   return (
     <div
-      className={`group flex items-center justify-between border-b border-foreground/10 py-6 transition-all duration-700 hover:border-foreground/20 md:py-8 ${getRevealClass()}`}
+      className={`group border-b border-foreground/10 py-5 transition-all duration-700 hover:border-foreground/20 md:py-6 ${getRevealClass()}`}
       style={{
         transitionDelay: `${index * 150}ms`,
         marginLeft: index % 2 === 0 ? "0" : "auto",
         maxWidth: index % 2 === 0 ? "85%" : "90%",
       }}
     >
-      <div className="flex items-baseline gap-4 md:gap-8">
-        <span className="font-mono text-sm text-foreground/30 transition-colors group-hover:text-foreground/50 md:text-base">
-          {project.number}
-        </span>
-        <div>
-          <h3 className="mb-1 font-sans text-2xl font-light text-foreground transition-transform duration-300 group-hover:translate-x-2 md:text-3xl lg:text-4xl">
-            {project.title}
-          </h3>
-          <p className="font-mono text-xs text-foreground/50 md:text-sm">{project.category}</p>
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-baseline gap-4 md:gap-8">
+          <span className="font-mono text-sm text-foreground/30 transition-colors group-hover:text-foreground/50 md:text-base">
+            {project.number}
+          </span>
+          <div>
+            <h3 className="mb-1 font-sans text-2xl font-light text-foreground transition-transform duration-300 group-hover:translate-x-2 md:text-3xl lg:text-4xl">
+              {project.title}
+            </h3>
+            <p className="font-mono text-xs text-foreground/50 md:text-sm">{project.category}</p>
+          </div>
         </div>
+        <button
+          onClick={onNavigate}
+          className="flex shrink-0 items-center gap-2 rounded-full border border-foreground/20 px-4 py-2 text-xs font-medium text-foreground/60 transition-all duration-200 hover:border-foreground/50 hover:bg-foreground hover:text-background"
+        >
+          Подробнее
+          <Icon name="ArrowRight" size={12} />
+        </button>
       </div>
-      <span className="font-mono text-xs text-foreground/30 md:text-sm">{project.year}</span>
+      <div className="mt-3 ml-12 flex flex-wrap gap-2 md:ml-16">
+        {project.tags.map((tag) => (
+          <span
+            key={tag}
+            onClick={onNavigate}
+            className="cursor-pointer rounded-full border border-foreground/10 px-3 py-1 font-mono text-xs text-foreground/40 transition-all duration-200 hover:border-foreground/30 hover:text-foreground/70"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
     </div>
   )
 }
