@@ -95,23 +95,23 @@ export default function Index() {
   }, [currentSection])
 
   useEffect(() => {
+    let wheelTimeout: ReturnType<typeof setTimeout> | null = null
+    let accumulated = 0
+
     const handleWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        e.preventDefault()
+      e.preventDefault()
 
-        if (!scrollContainerRef.current) return
+      accumulated += e.deltaY
 
-        scrollContainerRef.current.scrollBy({
-          left: e.deltaY,
-          behavior: "instant",
-        })
-
-        const sectionWidth = scrollContainerRef.current.offsetWidth
-        const newSection = Math.round(scrollContainerRef.current.scrollLeft / sectionWidth)
-        if (newSection !== currentSection) {
-          setCurrentSection(newSection)
+      if (wheelTimeout) clearTimeout(wheelTimeout)
+      wheelTimeout = setTimeout(() => {
+        if (accumulated > 30 && currentSection < 4) {
+          scrollToSection(currentSection + 1)
+        } else if (accumulated < -30 && currentSection > 0) {
+          scrollToSection(currentSection - 1)
         }
-      }
+        accumulated = 0
+      }, 50)
     }
 
     const container = scrollContainerRef.current
@@ -123,6 +123,7 @@ export default function Index() {
       if (container) {
         container.removeEventListener("wheel", handleWheel)
       }
+      if (wheelTimeout) clearTimeout(wheelTimeout)
     }
   }, [currentSection])
 
