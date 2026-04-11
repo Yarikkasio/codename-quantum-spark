@@ -11,6 +11,8 @@ export default function Index() {
   const [currentSection, setCurrentSection] = useState(0)
   const touchStartY = useRef(0)
   const touchStartX = useRef(0)
+  const touchStartTime = useRef(0)
+  const isSwiping = useRef(false)
   const scrollThrottleRef = useRef<number>()
 
   const scrollToSection = (index: number) => {
@@ -28,27 +30,52 @@ export default function Index() {
     const handleTouchStart = (e: TouchEvent) => {
       touchStartY.current = e.touches[0].clientY
       touchStartX.current = e.touches[0].clientX
+      touchStartTime.current = Date.now()
+      isSwiping.current = false
     }
 
     const handleTouchMove = (e: TouchEvent) => {
-      if (Math.abs(e.touches[0].clientY - touchStartY.current) > 10) {
+      const deltaX = e.touches[0].clientX - touchStartX.current
+      const deltaY = e.touches[0].clientY - touchStartY.current
+
+      if (!isSwiping.current && Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 5) {
+        isSwiping.current = true
+      }
+
+      if (isSwiping.current) {
         e.preventDefault()
+        if (scrollContainerRef.current) {
+          const sectionWidth = scrollContainerRef.current.offsetWidth
+          const base = sectionWidth * currentSection
+          const resistance = 0.35
+          scrollContainerRef.current.scrollLeft = base - deltaX * resistance
+        }
       }
     }
 
     const handleTouchEnd = (e: TouchEvent) => {
-      const touchEndY = e.changedTouches[0].clientY
-      const touchEndX = e.changedTouches[0].clientX
-      const deltaY = touchStartY.current - touchEndY
-      const deltaX = touchStartX.current - touchEndX
+      const deltaX = touchStartX.current - e.changedTouches[0].clientX
+      const deltaY = touchStartY.current - e.changedTouches[0].clientY
+      const elapsed = Date.now() - touchStartTime.current
+      const velocity = Math.abs(deltaX) / elapsed
 
-      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 50) {
-        if (deltaY > 0 && currentSection < 4) {
+      const isHorizontal = Math.abs(deltaX) > Math.abs(deltaY)
+      const isQuickFlick = velocity > 0.3 && Math.abs(deltaX) > 20
+      const isLongSwipe = Math.abs(deltaX) > 60
+
+      if (isHorizontal && (isQuickFlick || isLongSwipe)) {
+        if (deltaX > 0 && currentSection < 4) {
           scrollToSection(currentSection + 1)
-        } else if (deltaY < 0 && currentSection > 0) {
+        } else if (deltaX < 0 && currentSection > 0) {
           scrollToSection(currentSection - 1)
+        } else {
+          scrollToSection(currentSection)
         }
+      } else {
+        scrollToSection(currentSection)
       }
+
+      isSwiping.current = false
     }
 
     const container = scrollContainerRef.current
