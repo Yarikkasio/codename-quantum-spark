@@ -1,6 +1,13 @@
 import { useNavigate, useParams } from "react-router-dom"
 import Icon from "@/components/ui/icon"
 
+const sectionImages: Record<string, string> = {
+  labor: "https://cdn.poehali.dev/projects/12e9f643-468f-44a7-812b-b7d8d61b34ab/files/74f9e886-9d1d-42b8-b5f8-4f72a374c98b.jpg",
+  ethics: "https://cdn.poehali.dev/projects/12e9f643-468f-44a7-812b-b7d8d61b34ab/files/74f9e886-9d1d-42b8-b5f8-4f72a374c98b.jpg",
+  science: "https://cdn.poehali.dev/projects/12e9f643-468f-44a7-812b-b7d8d61b34ab/files/74f9e886-9d1d-42b8-b5f8-4f72a374c98b.jpg",
+  everyday: "https://cdn.poehali.dev/projects/12e9f643-468f-44a7-812b-b7d8d61b34ab/files/74f9e886-9d1d-42b8-b5f8-4f72a374c98b.jpg",
+}
+
 const sections: Record<string, {
   icon: string
   title: string
@@ -169,8 +176,16 @@ export default function ImpactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto max-w-5xl px-6 py-12 md:px-12">
+    <div className="relative min-h-screen bg-background text-foreground">
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-teal-200/40 blur-3xl" />
+        <div className="absolute left-1/3 top-1/4 h-80 w-80 rounded-full bg-cyan-200/35 blur-3xl" />
+        <div className="absolute right-0 top-10 h-72 w-72 rounded-full bg-teal-300/30 blur-3xl" />
+        <div className="absolute bottom-10 left-1/4 h-96 w-64 rounded-full bg-cyan-300/30 blur-3xl" />
+        <div className="absolute -bottom-20 right-1/4 h-80 w-80 rounded-full bg-teal-200/35 blur-3xl" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-5xl px-6 py-12 md:px-12">
         <button
           onClick={() => navigate(-1)}
           className="mb-10 flex items-center gap-2 text-sm text-foreground/50 transition-colors hover:text-foreground"
@@ -180,6 +195,13 @@ export default function ImpactPage() {
         </button>
 
         <div className="mb-12">
+          <div className="mb-8 overflow-hidden rounded-2xl">
+            <img
+              src={sectionImages[slug!]}
+              alt={section.title}
+              className="h-56 w-full object-cover md:h-72"
+            />
+          </div>
           <p className="mb-2 font-mono text-xs uppercase tracking-widest text-foreground/40">Влияние ИИ</p>
           <h1 className="mb-4 font-sans text-4xl font-light tracking-tight md:text-6xl">{section.title}</h1>
           <p className="max-w-2xl text-lg leading-relaxed text-foreground/70">{section.intro}</p>
@@ -189,7 +211,7 @@ export default function ImpactPage() {
           {section.topics.map((topic, i) => (
             <div
               key={i}
-              className="rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:border-foreground/20 hover:shadow-sm md:p-8"
+              className="rounded-2xl border border-border bg-card/80 p-6 backdrop-blur-sm transition-all duration-300 hover:border-foreground/20 hover:shadow-sm md:p-8"
             >
               <h2 className="mb-3 font-sans text-xl font-medium md:text-2xl">{topic.heading}</h2>
               <p className="mb-5 leading-relaxed text-foreground/70">{topic.text}</p>
