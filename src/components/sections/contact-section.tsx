@@ -1,7 +1,6 @@
 import { useReveal } from "@/hooks/use-reveal"
-import { MagneticButton } from "@/components/magnetic-button"
 
-export function ContactSection({ scrollToSection }: { scrollToSection?: (index: number) => void }) {
+export function ContactSection() {
   const { ref, isVisible } = useReveal(0.3)
 
   return (
@@ -71,20 +70,6 @@ export function ContactSection({ scrollToSection }: { scrollToSection?: (index: 
               )
             })}
           </div>
-        </div>
-
-        <div
-          className={`mt-4 flex flex-wrap gap-3 transition-all duration-700 md:mt-16 md:gap-4 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-          }`}
-          style={{ transitionDelay: "750ms" }}
-        >
-          <MagneticButton size="lg" variant="primary" onClick={() => scrollToSection?.(1)}>
-            Применение ИИ
-          </MagneticButton>
-          <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection?.(2)}>
-            Влияние на общество
-          </MagneticButton>
         </div>
       </div>
     </section>
