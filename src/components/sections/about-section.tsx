@@ -1,7 +1,6 @@
-import { MagneticButton } from "@/components/magnetic-button"
 import { useReveal } from "@/hooks/use-reveal"
 
-export function AboutSection({ scrollToSection }: { scrollToSection?: (index: number) => void }) {
+export function AboutSection() {
   const { ref, isVisible } = useReveal(0.3)
 
   return (
@@ -11,7 +10,7 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
     >
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid gap-8 md:grid-cols-2 md:gap-16 lg:gap-24">
-          {/* Left side - Story */}
+          {/* Left side */}
           <div>
             <div
               className={`mb-6 transition-all duration-700 md:mb-12 ${
@@ -42,7 +41,7 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
             </div>
           </div>
 
-          {/* Right side - Stats with creative layout */}
+          {/* Right side - Stats */}
           <div className="flex flex-col justify-center space-y-3 md:space-y-12">
             {[
               { value: "300M+", label: "Пользователей", sublabel: "ChatGPT за первый год", direction: "right" },
@@ -60,9 +59,7 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
                 <div
                   key={i}
                   className={`flex items-baseline gap-3 border-l border-foreground/30 pl-3 transition-all duration-700 md:gap-8 md:pl-8 ${getRevealClass()}`}
-                  style={{
-                    transitionDelay: `${300 + i * 150}ms`,
-                  }}
+                  style={{ transitionDelay: `${300 + i * 150}ms` }}
                 >
                   <div className="text-2xl font-light text-foreground sm:text-3xl md:text-6xl lg:text-7xl">{stat.value}</div>
                   <div>
@@ -73,20 +70,6 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
               )
             })}
           </div>
-        </div>
-
-        <div
-          className={`mt-4 flex flex-wrap gap-3 transition-all duration-700 md:mt-16 md:gap-4 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-          }`}
-          style={{ transitionDelay: "750ms" }}
-        >
-          <MagneticButton size="lg" variant="primary" onClick={() => scrollToSection?.(4)}>
-            Связаться
-          </MagneticButton>
-          <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection?.(1)}>
-            Примеры применения
-          </MagneticButton>
         </div>
       </div>
     </section>
